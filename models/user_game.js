@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     isactive: DataTypes.BOOLEAN,
     isAdmin: DataTypes.BOOLEAN,
     description: DataTypes.STRING,
-    user_id: DataTypes.INTEGER
+    email: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'user_game',

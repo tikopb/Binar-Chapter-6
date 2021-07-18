@@ -26,12 +26,23 @@
             <div class="col-sm-12 col-xs-12 h1-register">
                 REGISTER
             </div>
+            <% if (erorrMsg != "") { %>
+                <div class="alert alert-danger" role="alert">
+                    <%= erorrMsg %>
+                </div>
+            <% }%>
             <form action="/register" method="POST">
                 <div class="col-sm-12 col-xs-12" style="padding-top: 20px;">
                     <input class="register-form" type="text" name="username" placeholder="Enter username"> </label>
                 </div>
                 <div class="col-sm-12 col-xs-12" style="padding-top: 20px;">
-                    <input class="register-form" type="text" name="fullname" placeholder="Enter fullname"> </label>
+                    <input class="register-form" type="text" name="front_name" placeholder="Front Name"> </label>
+                </div>
+                <div class="col-sm-12 col-xs-12" style="padding-top: 20px;">
+                    <input class="register-form" type="text" name="last_name" placeholder="Last Name"> </label>
+                </div>
+                <div class="col-sm-12 col-xs-12" style="padding-top: 20px;">
+                    <input class="register-form" type="text" name="age" placeholder="Age"> </label>
                 </div>
                 <div class="col-sm-12 col-xs-12" style="padding-top: 20px;">
                     <input class="register-form" type="email" name="email" placeholder="Enter email"> </label>

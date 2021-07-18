@@ -9,7 +9,8 @@ module.exports = {
       isAdmin: true,
       description: 'deafult user for access admin page',
       createdAt: new Date(),
-      updatedAt: new Date()
+      updatedAt: new Date(),
+      email: 'admin@mail.com'
     }]);
   },
 

@@ -15,10 +15,12 @@ module.exports = {
         type: Sequelize.TEXT
       },
       isactive: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        defaultValue: true
       },
       isAdmin: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
       },
       description: {
         type: Sequelize.STRING
