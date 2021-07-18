@@ -8,7 +8,7 @@ controller ini berfungsi sebagai middleware pada index.js dan logika page login 
 // define master of variabel login 
 const express = require("express")
 const login = express()
-const { user_game, user_game_biodata } = require('../models')
+let { user_game, user_game_biodata } = require('../models')
 
 //controller validation
 //register 
@@ -47,9 +47,8 @@ login.post('/register', (req,res, next) => {
 
 //login admin validatoin
 login.post('/loginAdmin', (req,res) => {
-    let user = null
     const {username, password} = req.body
-    user = user_game.findAll({
+    user_game.findAll({
         where: {
             username: username,
             password: password,
@@ -57,9 +56,8 @@ login.post('/loginAdmin', (req,res) => {
             isactive: true            
         }
     }).then(function (user){
-        console.log(user)
         if(user.length !== 0){
-            res.redirect('/dashboard')
+            res.redirect(`/dashboard?name=${username}&id=${user.get('id')}`)
         }else{
             console.log('username Or Password is Wrong')
             res.render('loginAdmin',{
@@ -71,32 +69,24 @@ login.post('/loginAdmin', (req,res) => {
 
 //login validatoin
 login.post('/login', (req,res) => {
-    let user = null
     const {username, password} = req.body
-  
-    // user = user_game.findOne({
-    //     where: {
-    //         username: username,
-    //         password: password,
-    //         isAdmin: false,
-    //         isactive: true            
-    //     }
-    // });
-    // .then((data) => {
-    //     user = data;
-    //     console.log(user)
-    // });
-    
-    
-    
-    // if(user.length !== null){
-    //     res.redirect(`/games `)
-    // }else{
-    //     console.log('username Or Password is Wrong')
-    //     res.render('login',{
-    //         erorrMsg: 'username Or Password is Wrong'
-    //     })
-    // }
+    user_game.findOne({
+        where: {
+            username: username,
+            password: password,
+            isAdmin: false,
+            isactive: true            
+        }
+    }).then((data) => {
+        if(user_game.length !== null){
+            res.redirect(`/games?name=${data.get('username')}&id=${data.get('id')}`)  
+        }else{
+            console.log('username Or Password is Wrong')
+            res.render('login',{
+                erorrMsg: 'username Or Password is Wrong'
+            })
+        }
+    })
 })
 
 module.exports = login;
