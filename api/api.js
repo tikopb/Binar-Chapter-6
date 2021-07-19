@@ -35,7 +35,6 @@ api.post('/api/v1/user/posts', (req, res) => {
             username: username
         }
     }).then(function (usernameExist){
-        console.log(usernameExist)
         if(usernameExist.length > 0){
             console.log('username already exist!')
             res.status(422).json("username already exist!")
@@ -61,20 +60,23 @@ api.post('/api/v1/user/posts', (req, res) => {
 //update
 // PUT an article
 api.put('/api/v1/user/:id', (req, res) => {
-    const {username, front_name, last_name, age, email,password} = req.body 
-     
-    user_game.update({
-        username: username,
-        password: password,
-        email: email
-    }, {
-        where: { id: req.params.id }
+    const {username, email,password} = req.body 
+    user_game.findOne({
+        where: {
+            id: req.params.id
+        }
+    }).then((user_game) => {
+        user_game.update({
+            username: username,
+            password: password,
+            email: email
+        }).then(user_game => {
+            res.status(201).json(user_game)
+        }) .catch(err => {
+            res.status(422).json("Can't create article")
+        })
     })
-    .then(user_game => {
-         res.status(201).json(user_game)
-    }) .catch(err => {
-         res.status(422).json("Can't create article")
-    })
+        
 })
 
 //destroy data
