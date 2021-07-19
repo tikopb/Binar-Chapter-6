@@ -12,3 +12,5 @@ user = http://localhost:8081/login
 - 4.a api terdapat pada folder api
 - 4.b semua logika apliaksi ada pada folder controller.
 
+5. untuk menampilkan data di dashboard wajib registrasi user baru terlebih dahulu!
+
