@@ -48,19 +48,19 @@ login.post('/register', (req,res, next) => {
 //login admin validatoin
 login.post('/loginAdmin', (req,res) => {
     const {username, password} = req.body
-    user_game.findAll({
+    user_game.findOne({
         where: {
             username: username,
             password: password,
             isAdmin: true,
             isactive: true            
         }
-    }).then(function (user){
-        if(user.length !== 0){
-            res.redirect(`/dashboard?name=${username}&id=${user.get('id')}`)
+    }).then((data) => {
+        if(user_game.length !== null){
+            res.redirect(`/dashboard?name=${data.get('username')}&id=${data.get('id')}`)  
         }else{
             console.log('username Or Password is Wrong')
-            res.render('loginAdmin',{
+            res.render('login',{
                 erorrMsg: 'username Or Password is Wrong'
             })
         }

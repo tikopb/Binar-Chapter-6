@@ -5,6 +5,7 @@ controller ini berfungsi sebagai routing page pada app
 //define master variabel
 const express = require('express')
 const router = express()
+let { user_game, user_game_biodata, user } = require('../models')
 
 
 //rounting login & register start
@@ -28,9 +29,35 @@ router.get("/admin", (req, res, next) => {
 });
 
 router.get("/dashboard", (req, res) => {
-    res.render("dashboard");
+    user_game.findAll({
+        where:{
+            isactive: true,
+            isAdmin: false
+        }
+    })
+    .then(user_game =>{
+        res.render("dashboard",{
+            name: req.query.name,
+            user_game
+        });
+    })
 });
 
+router.get("/dashboard-edit", (req, res) => {
+    user_game.findOne({
+        where:{
+            isactive: true,
+            isAdmin: false,
+            id: req.query.id
+        }
+    })
+    .then(user_game =>{
+        res.render("dashboard-edit",{
+            name: req.query.name,
+            user_game
+        });
+    })
+});
 
 //rounting login & register end
 
