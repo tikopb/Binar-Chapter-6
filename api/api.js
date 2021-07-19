@@ -62,6 +62,7 @@ api.post('/api/v1/user/posts', (req, res) => {
 // PUT an article
 api.put('/api/v1/user/:id', (req, res) => {
     const {username, front_name, last_name, age, email,password} = req.body 
+     
     user_game.update({
         username: username,
         password: password,

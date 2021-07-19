@@ -75,11 +75,11 @@
       <form action="/dashboard-edit-save?id=<%= user_game.id %>" method="POST">
         <div class="col-sm-12 col-xs-12" style="padding-top: 20px;">
           username
-          <input class="input-group-text" type="username" name="username" placeholder="<%= user_game.username %>"> </label>
+          <input type="text" class="form-control" id="username" name="username"  placeholder="Enter Username" value="<%= user_game.username %>">
         </div>
         <div class="col-sm-12 col-xs-12" style="padding-top: 20px;">
           email
-          <input class="input-group-text" type="email" name="email" placeholder="<%= user_game.email %>">
+          <input type="email" class="form-control" id="email" name="email"  aria-describedby="emailHelp" placeholder="Enter email" value="<%= user_game.email %>">
         </div>
         <br>
         <button class="btn btn-primary" type="submit">Edit</button>

@@ -18,12 +18,14 @@ app.use(express.json());
 
 const router = require('./routing/router')
 const c_login = require('./controller/c_login')
+const c_dashboard = require('./controller/c_dashboard')
 const api = require('./api/api')
 var users = require("./data/user.json")
 
 app.use(router);
 app.use(c_login);
 app.use(api);
+app.use(c_dashboard);
 //middleware end 
 
 
